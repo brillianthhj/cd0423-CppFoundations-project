@@ -48,7 +48,7 @@ sudo make install
 
 ### 2. Compile
 > [!NOTE]  
-> Warning messages generated during this process can be ignored
+> Warning messages generated during this step can be ignored
 
 Run the following commands from the root directory of the project (e.g., ```~/cpp-c1-Route-Planning-Project```). Two important executables will be created: ```test``` and ```OSM_A_star_search```. 
 ```
@@ -93,6 +93,9 @@ To ensure the program works as intentended, we need to first run unit tests. You
 ```
 ./test
 ```
+
+Below is an explanation of each unit test: 
+
 #### Unit Tests Explained
 #### 1. TestCalculateHValue
 Tests the heuristic calculation function used in A* search.
@@ -155,7 +158,7 @@ By default, the program uses the ```map.osm``` map file. To specify a different 
 ```
 
 > [!IMPORTANT]
-> Each time you execute ```./OSM_A_star_search```, the file ```map_routed.png``` will be updated with the specified start and end coordinates.
+> When your code is completed, each execution of ```./OSM_A_star_search``` will update the file ```map_routed.png```. Until you update your code, the program will say it's updated the map but that won't have actually happened.
 
 
 ## Project Instructions
