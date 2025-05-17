@@ -5,7 +5,7 @@ This repo contains the starter code for the Route Planning project.
 When the project is completed and successfully ran, a route-overlayed map will be saved to ```build/map_routed.png```
 
 
-<img src="map_routed.png" width="50%" alt="Map showing the plotted route from 10, 10 to 90, 90"/>
+<img src="instruction_images/map_routed.png" width="50%" alt="Map showing the plotted route from 10, 10 to 90, 90"/>
 
 ## Compiling and Running the Project
 As you make changes to the source code, the build will **not** automatically update. To create updated executables, follow Steps 2 - 4. 
@@ -94,6 +94,11 @@ To ensure the program works as intentended, we need to first run unit tests. You
 ./test
 ```
 
+Successful testing will show all tests have passed, as shown in the screenshot below (your terminal may or may not show color - either is fine): 
+
+<img src="instruction_images/test_successful.png" width="50%" alt="Screenshot of terminal showing all tests ran successfully"/>
+
+<br/>
 Below is an explanation of each unit test: 
 
 #### Unit Tests Explained
@@ -156,6 +161,13 @@ By default, the program uses the ```map.osm``` map file. To specify a different 
 ```
 ./OSM_A_star_search -f ../<your_osm_file.osm>
 ```
+
+If the program successfully executes, you'll see an output of: 
+* The calculated distance
+* A message that ```build/map_routed.png``` has been updated
+
+<img src="instruction_images/osm_search_successful.png" width="50%" alt="Screenshot showing successful output from running ./OSM_A_star_search"/>
+
 
 > [!IMPORTANT]
 > When your code is completed, each execution of ```./OSM_A_star_search``` will update the file ```map_routed.png```. Until you update your code, the program will say it's updated the map but that won't have actually happened.
