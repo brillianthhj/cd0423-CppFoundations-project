@@ -186,4 +186,4 @@ _Instructions are listed in the Udacity course._
 
 ## License
 
-[License](LICENSE.txt)
+[License](LICENSE)
