@@ -10,7 +10,7 @@ When the project is completed and successfully ran, a route-overlayed map will b
 _Start: 10, 10 - End: 90, 90_
 
 ## Compiling and Running the Project
-As you make changes to the source code, the build will **not** automatically update. To create updated executables, follow Steps 2 - 4. 
+As you make changes to the source code, the build will **not** automatically update. To create updated executables, follow Steps 2 - 4.
 
 ## Getting Started
 This document contains instructions for how to run the project on your local machine. If you're using the Udacity-provided Workspace, these steps have already been completed.
@@ -41,24 +41,26 @@ Install the following dependencies:
 ```
 git clone --recurse-submodules https://github.com/cpp-io2d/P0267_RefImpl
 cd P0267_RefImpl
-mkdir Debug
-cmake -S .. -D CMAKE_BUILD_TYPE=Debug -DIO2D_WITHOUT_TESTS=1
-cmake --build .. --config Debug
-make
-sudo make install
+mkdir -p build
+cd build
+cmake .. \
+    -DCMAKE_BUILD_TYPE=Debug \
+    -DIO2D_WITHOUT_TESTS=1 \
+    -DIO2D_WITHOUT_SAMPLES=1 \
+    -DIO2D_DEFAULT=CAIRO_XLIB
+cmake --build . -j"$(nproc)"
+sudo cmake --install .
 ```
 
 ### 2. Compile
-> [!NOTE]  
+> [!NOTE]
 > Warning messages generated during this step can be ignored
 
-Run the following commands from the root directory of the project (e.g., ```~/cpp-c1-Route-Planning-Project```). Two important executables will be created: ```test``` and ```OSM_A_star_search```. 
+Run the following commands from the root directory of the project (e.g., ```~/cpp-c1-Route-Planning-Project```). Two important executables will be created: ```test``` and ```OSM_A_star_search```.
 ```
-rm -rf build
 mkdir build
 cd build
-cmake ..
-make
+cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 ```
 
 After successfully compiling, your file tree should look like this:
@@ -69,8 +71,9 @@ cpp-c1-Route-Planning-Project
 │   ├── CMakeFiles/
 │   ├── lib/
 │   ├── thirdparty/
-│   ├── CMakeCache.txt
 │   ├── cmake_install.cmake
+│   ├── CMakeCache.txt
+│   ├── compile_commands.json
 │   ├── Makefile
 │   ├── OSM_A_star_search
 │   └── test
@@ -117,7 +120,7 @@ Tests the heuristic calculation function used in A* search.
 **Importance**: Accurate heuristic values are essential for A* to find optimal paths.
 
 #### 2. TestAddNeighbors
-Tests the neighbor node expansion functionality. 
+Tests the neighbor node expansion functionality.
 
 **Purpose**: Verifies correct processing of neighboring nodes.
 
@@ -164,7 +167,7 @@ By default, the program uses the ```map.osm``` map file. To specify a different 
 ./OSM_A_star_search -f ../<your_osm_file.osm>
 ```
 
-If the program successfully executes, you'll see an output of: 
+If the program successfully executes, you'll see an output of:
 * The calculated distance
 * A message that ```build/map_routed.png``` has been updated
 
