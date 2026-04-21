@@ -61,6 +61,7 @@ Run the following commands from the root directory of the project (e.g., ```~/cp
 mkdir build
 cd build
 cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+cmake --build build -j"$(nproc)"
 ```
 
 After successfully compiling, your file tree should look like this:
