@@ -59,7 +59,6 @@ sudo cmake --install .
 Run the following commands from the root directory of the project (e.g., ```~/cpp-c1-Route-Planning-Project```). Two important executables will be created: ```test``` and ```OSM_A_star_search```.
 ```
 mkdir build
-cd build
 cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 cmake --build build -j"$(nproc)"
 ```
