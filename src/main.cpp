@@ -12,14 +12,14 @@
 using namespace std::experimental;
 
 static std::optional<std::vector<std::byte>> ReadFile(const std::string &path)
-{   
+{
     std::ifstream is{path, std::ios::binary | std::ios::ate};
     if( !is )
         return std::nullopt;
-    
+
     auto size = is.tellg();
-    std::vector<std::byte> contents(size);    
-    
+    std::vector<std::byte> contents(size);
+
     is.seekg(0);
     is.read((char*)contents.data(), size);
 
@@ -29,7 +29,7 @@ static std::optional<std::vector<std::byte>> ReadFile(const std::string &path)
 }
 
 int main(int argc, const char **argv)
-{    
+{
     std::string osm_data_file = "";
     if( argc > 1 ) {
         for( int i = 1; i < argc; ++i )
@@ -41,9 +41,9 @@ int main(int argc, const char **argv)
         std::cout << "Usage: [executable] [-f filename.osm]" << std::endl;
         osm_data_file = "../map.osm";
     }
-    
+
     std::vector<std::byte> osm_data;
- 
+
     if( osm_data.empty() && !osm_data_file.empty() ) {
         std::cout << "Reading OpenStreetMap data from the following file: " <<  osm_data_file << std::endl;
         auto data = ReadFile(osm_data_file);
@@ -52,10 +52,10 @@ int main(int argc, const char **argv)
         else
             osm_data = std::move(*data);
     }
-    
 
 
- 
+
+
     // Build Model.
     RouteModel model{osm_data};
 
