@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <algorithm>
 #include <cairo/cairo.h>
 #include "io2d.h"
 #include "route_model.h"
@@ -65,23 +66,39 @@ int main(int argc, const char **argv)
     // TODO 1: Declare floats `start_x`, `start_y`, `end_x`, and `end_y` and get
     // user input for these values using std::cin. Pass the user input to the
     // RoutePlanner object below in place of 10, 10, 90, 90.
-    RoutePlanner route_planner{model, 10, 10, 90, 90};
+    float start_x, start_y, end_x, end_y;
+
+    std::cout << "Enter a start x between 0 and 100: ";
+    std::cin >> start_x;
+    std::cout << "Enter a start y between 0 and 100: ";
+    std::cin >> start_y;
+    std::cout << "Enter an end x between 0 and 100: ";
+    std::cin >> end_x;
+    std::cout << "Enter an end y between 0 and 100: ";
+    std::cin >> end_y;
+
+    start_x = std::clamp(start_x, 0.f, 100.f);
+    start_y = std::clamp(start_y, 0.f, 100.f);
+    end_x = std::clamp(end_x, 0.f, 100.f);
+    end_y = std::clamp(end_y, 0.f, 100.f);
+
+    RoutePlanner route_planner{model, start_x, start_y, end_x, end_y};
     route_planner.AStarSearch();
     std::cout << "Distance: " << route_planner.GetDistance() << " meters. \n";
-    
+
     // Create render object
     Render render{model};
 
     // Create an image surface
     auto surface = io2d::image_surface{io2d::format::argb32, 400, 400};
-    
+
     // Render to the surface
     render.Display(surface);
 
     // Save the surface to a PNG file
     surface.save("map_routed.png", io2d::image_file_format::png);
-    
+
     std::cout << "Route has been rendered to map_routed.png" << std::endl;
-    
+
     return 0;
 }
